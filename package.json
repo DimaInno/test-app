@@ -1,13 +1,15 @@
 {
-  "name": "parcel-vanilla-starter",
+  "name": "test-app",
   "private": true,
   "version": "0.0.0",
   "source": "src/index.html",
   "scripts": {
-    "start": "parcel",
+    "start": "parcel src/index.html",
     "build": "parcel build"
   },
   "devDependencies": {
-    "parcel": "^2.14.4"
+    "@parcel/transformer-sass": "^2.14.4",
+    "parcel": "^2.14.4",
+    "sass": "^1.87.0"
   }
 }
