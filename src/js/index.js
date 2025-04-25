@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.querySelector('.main__cards-scroll-container');
   const progressBar = document.getElementById('scrollProgressBar');
-  const containerHeght = document.querySelector('.main__cards').offsetHeight;
-  container.style.height = `${containerHeght - window.innerHeight/2}px`;
 
   function updateProgressBar() {
+    const containerHeght = document.querySelector('.main__cards').offsetHeight;
+    container.style.height = `${containerHeght - window.innerHeight/2}px`;
     const containerRect = container.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
