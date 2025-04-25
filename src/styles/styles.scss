@@ -1,5 +1,8 @@
 @use '_nullstyles';
-@import '_variables';
+
+$color_title: #18141498;
+$color_text: #1f1f1f;
+$color_white: #fff;
 
 @mixin flexColumn {
     display: flex;
@@ -30,32 +33,101 @@
         padding-bottom: 3rem;
         margin: 0 20px;
 
-        p {
-            text-align: center;
-            font-size: 1.5rem;
-            letter-spacing: -1px;
-            color: $color_text;
-            font-weight: 600;
+        &-header {
+            border-bottom: 1px solid $color_title;
+            padding-bottom: 0.35rem;
+    
+            span {
+                padding: 0.3rem 1rem;
+                background-color: $color_title;
+                font-size: 1rem;
+                color: $color_white;
+                border-top-left-radius: .375rem;
+                border-top-right-radius: .375rem;
+            }
+        }
+
+        &-body {
+            @include flexColumn;
+            justify-content: space-between;
+            height: 100%;
+
+            p {
+                text-align: center;
+                font-size: 1.5rem;
+                letter-spacing: -1px;
+                color: $color_text;
+                font-weight: 600;
+            }
         }
     }
 
-    &__content-header {
-        border-bottom: 1px solid $color_title;
-        padding-bottom: 0.35rem;
-
-        span {
-            padding: 0.3rem 1rem;
-            background-color: $color_title;
-            font-size: 1rem;
-            color: $color_white;
-            border-top-left-radius: .375rem;
-            border-top-right-radius: .375rem;
-        }
-    }
-
-    &__content-body {
-        @include flexColumn;
+    &__cards {
+        position: relative;
+        display: flex;
         justify-content: space-between;
         height: 100%;
+        margin-top: 30vh;
+
+        &-scroll-container {
+            position: relative;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        &-progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background:  #cc0000;
+            transition: height 0.3s ease;
+        }
+
+        &-items {
+            max-width: 1000px;
+            width: 50%;
+            padding: 20px 20px 20px 30px;
+            position: relative;
+            transform: translateY(-230px);
+        }
     }
 }
+
+.card {
+    max-width: 400px;
+    width: 100%;
+    height: 400px;
+    padding: 20px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(200px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .card.left {
+    transform: translate(-115%, 200px);
+  }
+  
+  .card.visible.right {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card.visible.left {
+    opacity: 1;
+    transform: translate(-115%, 0);
+  }
+  
+  .content::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
