@@ -3,6 +3,7 @@
 $color_title: #18141498;
 $color_text: #1f1f1f;
 $color_white: #fff;
+$color_red: #cc0000;
 
 @mixin flexColumn {
     display: flex;
@@ -76,7 +77,6 @@ $color_white: #fff;
             transform: translateX(-50%);
             width: 6px;
             background: rgba(0, 0, 0, 0.1);
-            z-index: 100;
         }
 
         &-progress-bar {
@@ -85,7 +85,7 @@ $color_white: #fff;
             left: 0;
             width: 100%;
             height: 0;
-            background:  #cc0000;
+            background:  $color_red;
             transition: height 0.3s ease;
         }
 
@@ -96,38 +96,69 @@ $color_white: #fff;
             position: relative;
             transform: translateY(-230px);
         }
+
+        &-item {
+            position: relative;
+            margin-bottom: 20px;
+            height: 400px;
+
+            .card {
+                max-width: 400px;
+                width: 100%;
+                height: 400px;
+                padding: 20px;
+                background: #f0f0f0;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                opacity: 0;
+                transform: translateY(200px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+              
+            .card.left {
+                position: absolute;
+                left: -460px;
+            }
+              
+            .card.visible.right {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .card.visible.left {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .label{
+                position: absolute;
+                top: 50%;
+                left: -54px;
+                z-index: 20;
+                transform: translateY(-50%);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 140px;
+                height: 60px;
+                line-height: 40px;
+                text-align: center;
+                font-size: 2rem;
+
+                svg {
+                    background-color: $color_white;
+                    fill: inherit;
+                }
+
+                &.filled {
+                    color: $color_red;
+                    fill: $color_red;
+                }
+            }
+
+            .label.left {
+                left: -144px;
+            }
+        }
     }
 }
-
-.card {
-    max-width: 400px;
-    width: 100%;
-    height: 400px;
-    padding: 20px;
-    background: #f0f0f0;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transform: translateY(200px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  
-  .card.left {
-    transform: translate(-115%, 200px);
-  }
-  
-  .card.visible.right {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .card.visible.left {
-    opacity: 1;
-    transform: translate(-115%, 0);
-  }
-  
-  .content::after {
-    content: "";
-    display: table;
-    clear: both;
-  }

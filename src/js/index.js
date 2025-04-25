@@ -34,19 +34,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function animateCards() {
   const cards = document.querySelectorAll('.card');
-  const triggerBottom = window.innerHeight * 0.8;
+  const triggerCard = window.innerHeight * 0.8;
+  const labels = document.querySelectorAll('.label');
+  const triggerLabel = window.innerHeight / 2;
 
-  cards.forEach((card, index) => {
-    const cardTop = card.getBoundingClientRect().top;
-    
-    if (cardTop < triggerBottom) {
-      setTimeout(() => {
+  if(labels.length > 0) {
+    labels.forEach(label => {
+      const labelTop = label.getBoundingClientRect().top;
+
+      if (labelTop < triggerLabel) {
+        label.classList.add('filled');
+      } else {
+        label.classList.remove('filled');
+      }
+    });
+  }
+
+  if(cards.length > 0) {
+    cards.forEach(card => {
+      const cardTop = card.getBoundingClientRect().top;
+      
+      if (cardTop < triggerCard) {
         card.classList.add('visible');
-      }, index * 200);
-    } else {
-      card.classList.remove('visible');
-    }
-  });
+      } else {
+        card.classList.remove('visible');
+      }
+    });
+  }
 }
 
 window.addEventListener('load', animateCards);
