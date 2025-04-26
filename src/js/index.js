@@ -3,8 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressBar = document.getElementById('scrollProgressBar');
 
   function updateProgressBar() {
-    const containerHeght = document.querySelector('.main__cards').offsetHeight;
-    container.style.height = `${containerHeght - window.innerHeight/2}px`;
+    const containerHeght = document.querySelector('.main__cards-items').offsetHeight;
+    const cards = document.querySelectorAll('.main__cards-item');
+    const firstCard = cards[0];
+    const computedStyles = window.getComputedStyle(firstCard).marginBottom;
+    const numericValue = parseInt(computedStyles, 10);
+    container.style.height = `${containerHeght - cards[cards.length - 1].offsetHeight/2 - cards[0].offsetHeight/2 - numericValue*(cards.length/2)}px`;
     const containerRect = container.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
