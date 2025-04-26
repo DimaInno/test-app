@@ -164,6 +164,8 @@ $color_red: #cc0000;
             }
 
             .card {
+                @include flexColumn;
+                justify-content: space-between;
                 max-width: 500px;
                 width: 100%;
                 height: 400px;
@@ -178,6 +180,13 @@ $color_red: #cc0000;
 
                 @media screen and (max-width: 768px) {
                     transform: translate(0, 200px);
+                }
+
+                &__img {
+                    width: 100%;
+                    max-height: calc(100% - 60px);
+                    height: 100%;
+                    object-fit: cover;
                 }
             }
               
