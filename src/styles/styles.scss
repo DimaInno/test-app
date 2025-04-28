@@ -70,7 +70,7 @@ $color_red: #cc0000;
     &__cards {
         position: relative;
         height: 100%;
-        margin-top: 30vh;
+        margin-top: 320px;
 
         &-scroll-container {
             position: absolute;
@@ -193,11 +193,41 @@ $color_red: #cc0000;
             .card.visible.right {
                 opacity: 1;
                 transform: translateY(0);
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: -20px;
+                    width: 20px;
+                    height: 30px;
+                    background: #f0f0f0;
+                    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+                }
             }
             
             .card.visible.left {
                 opacity: 1;
                 transform: translateY(0);
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    right: -20px;
+                    width: 20px;
+                    height: 30px;
+                    background: #f0f0f0;
+                    clip-path: polygon(100% 50%, 0 0, 0 100%);
+
+                    @media screen and (max-width: 768px) {
+                        right: unset;
+                        left: -20px;
+                        clip-path: polygon(0 50%, 100% 0, 100% 100%);
+                    }
+                }
             }
 
             .label{
